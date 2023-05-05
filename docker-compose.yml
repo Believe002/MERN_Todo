@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  
+  backend:
+    build: 
+      dockerfile: Dockerfile
+      context: ./trainee_backend/
+    container_name: backend
+    image: mern-backend:v1
+    
+  
+  frontend:
+    build:   
+      dockerfile: Dockerfile
+      context: ./trainee_frontend/
+    image: mern-frontend:v1
+    container_name: frontend

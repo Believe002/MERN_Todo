@@ -1,0 +1,45 @@
+version: "3.9"
+services:
+  
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    restart: always
+    networks:
+      - backend-network
+    ports:
+      - 27017
+  
+  backend:
+    image: babodesi/mern-backend:latest
+    container_name: backend
+    restart: always
+    ports:
+      - 4000
+    networks:
+      - frontend-network
+      - backend-network
+    depends_on:
+      - mongodb
+  
+  frontend:
+    image: babodesi/mern-frontend:latest
+    container_name: frontend
+    restart: always 
+    networks:
+      - frontend-network
+    ports:
+      - 80:80
+    depends_on:
+      - backend
+  
+  prometheus:
+    image: prom/prometheus
+    volumes: 
+      - /home/docker/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - 9090:9090
+
+networks:
+  frontend-network:
+  backend-network:
