@@ -1,6 +1,6 @@
 version: "3.9"
 services:
-  
+
   mongodb:
     image: mongo
     container_name: mongodb
@@ -9,7 +9,7 @@ services:
       - backend-network
     ports:
       - 27017
-  
+
   backend:
     image: babodesi/mern-backend:latest
     container_name: backend
@@ -21,7 +21,7 @@ services:
       - backend-network
     depends_on:
       - mongodb
-  
+
   frontend:
     image: babodesi/mern-frontend:latest
     container_name: frontend
@@ -32,14 +32,7 @@ services:
       - 80:80
     depends_on:
       - backend
-  
-  prometheus:
-    image: prom/prometheus
-    volumes: 
-      - /home/docker/prometheus.yml:/etc/prometheus/prometheus.yml
-    ports:
-      - 9090:9090
 
 networks:
   frontend-network:
-  backend-network:
+  backend-network:  

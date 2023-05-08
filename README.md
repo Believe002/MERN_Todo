@@ -2,7 +2,7 @@
 ___
 
 ## Project Overview
- - This is  MERN (MongoDB, Express, React, Node.js) stack project that allows users to perform create, read, update, and delete operations. The project has been containerized using Docker Compose for easy deployment and management of the application.
+ - This is a MERN (MongoDB, Express, React, Node.js) stack project that allows users to perform create, read, update, and delete operations. The project has been containerized using Docker Compose for easy deployment and management of the application.
 
 ### Prerequisites
  - Docker: You need to have Docker installed on your system. You can download Docker from the official Docker website at https://www.docker.com/products/docker-desktop.
