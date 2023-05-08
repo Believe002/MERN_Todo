@@ -11,7 +11,7 @@ services:
       - 27017
 
   backend:
-    image: babodesi/mern-backend:latest
+    image: mrbelieve002/mern-backend:latest
     container_name: backend
     restart: always
     ports:
@@ -23,7 +23,7 @@ services:
       - mongodb
 
   frontend:
-    image: babodesi/mern-frontend:latest
+    image: mrbelieve002/mern-frontend:latest
     container_name: frontend
     restart: always 
     networks:

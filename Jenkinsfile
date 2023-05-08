@@ -9,22 +9,25 @@ pipeline {
   stages {
     stage('gitclone') {
       steps {
-        git 'https://github.com/ankitpipalia/MERN-Stack.git'
+       git branch: 'main',
+                credentialsId: 'Github_Token',
+                url: 'https://github.com/Believe002/MERN_Todo.git'
+
       }
     }
     
-    stage('Node Build') {
-      steps {
-        nodejs(nodeJSInstallationName : 'NodeJs') {
+    // stage('Node Build') {
+    //   steps {
+    //     nodejs(nodeJSInstallationName : 'NodeJs') {
         
-        dir("trainee_backend/") {    
-            sh 'pwd'
-            sh 'npm install'
-        }
+    //     dir("trainee_backend/") {    
+    //         sh 'pwd'
+    //         sh 'npm install'
+    //     }
             
-        }
-      }
-    }
+    //     }
+    //   }
+    // }
     
     stage('Execute SonarQube Report') {
     steps {
@@ -47,25 +50,25 @@ pipeline {
 
     stage('Push-Frontend') {
       steps {
-        sh 'docker tag mern-frontend:v1 babodesi/mern-frontend:v${BUILD_NUMBER}'
-        sh 'docker tag mern-frontend:v1 babodesi/mern-frontend:latest'
-        sh 'docker push babodesi/mern-frontend:v${BUILD_NUMBER}'
-        sh 'docker push babodesi/mern-frontend:latest'
+        sh 'docker tag mern-frontend:v1 mrbelieve002/mern-frontend:v${BUILD_NUMBER}'
+        sh 'docker tag mern-frontend:v1 mrbelieve002/mern-frontend:latest'
+        sh 'docker push mrbelieve002/mern-frontend:v${BUILD_NUMBER}'
+        sh 'docker push mrbelieve002/mern-frontend:latest'
         sh 'docker rmi mern-frontend:v1'
-        sh 'docker rmi babodesi/mern-frontend:latest'
-        sh 'docker rmi babodesi/mern-frontend:v${BUILD_NUMBER}'
+        sh 'docker rmi mrbelieve002/mern-frontend:latest'
+        sh 'docker rmi mrbelieve002/mern-frontend:v${BUILD_NUMBER}'
       }
     }
 
     stage('Push-Backend') {
       steps {
-        sh 'docker tag mern-backend:v1 babodesi/mern-backend:v${BUILD_NUMBER}'
-        sh 'docker tag mern-backend:v1 babodesi/mern-backend:latest'
-        sh 'docker push babodesi/mern-backend:v${BUILD_NUMBER}'
-        sh 'docker push babodesi/mern-backend:latest'
+        sh 'docker tag mern-backend:v1 mrbelieve002/mern-backend:v${BUILD_NUMBER}'
+        sh 'docker tag mern-backend:v1 mrbelieve002/mern-backend:latest'
+        sh 'docker push mrbelieve002/mern-backend:v${BUILD_NUMBER}'
+        sh 'docker push mrbelieve002/mern-backend:latest'
         sh 'docker rmi mern-backend:v1'
-        sh 'docker rmi babodesi/mern-backend:latest'
-        sh 'docker rmi babodesi/mern-backend:v${BUILD_NUMBER}'
+        sh 'docker rmi mrbelieve002/mern-backend:latest'
+        sh 'docker rmi mrbelieve002/mern-backend:v${BUILD_NUMBER}'
       }
     }
 
@@ -81,8 +84,8 @@ pipeline {
   }
   
   environment {
-    DOCKERHUB_CREDENTIALS_PSW = 'ankit@2002'
-    DOCKERHUB_CREDENTIALS_USR = 'babodesi'
+    DOCKERHUB_CREDENTIALS_PSW = 'dckr_pat_GAVYIVPHT0gju3xKhdNAz1zztcE'
+    DOCKERHUB_CREDENTIALS_USR = 'mrbelieve002'
       
   }
   
